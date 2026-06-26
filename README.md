@@ -1,7 +1,6 @@
 ### About
 
 - Adjusts the governor of each cpu between frequencies to either powersave or performance dynamically
-- Adjusts cstates of processor given a certain frequency
 
 #### Todo
 
