@@ -36,6 +36,8 @@ int main() {
 
 		for (int cpu_count = 0; cpu_count < ncpus; cpu_count++) {
 			
+			int current_freq = cpufreq_get_freq_kernel(cpu_count);
+			
 			cpufreq_set_frequency(cpu_count, min_freq);
 			cpufreq_modify_policy_governor(cpu_count, gov_save);
 
