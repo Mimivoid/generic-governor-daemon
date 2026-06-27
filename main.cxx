@@ -19,7 +19,7 @@ int main() {
 
 	printf("%d\n", ncpus);
 
-	const long tick_ms = 360; // ~1/2 Hz @ 512
+	const long tick_ms = 280; // ~1/2 Hz @ 512
     struct timespec ticks = {0, tick_ms * 1000000};
 
 	cpufreq_get_hardware_limits(0, &min_freq, &max_freq);
