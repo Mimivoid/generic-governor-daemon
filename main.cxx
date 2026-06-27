@@ -41,16 +41,15 @@ int main() {
 			printf("%s\n", policy->governor);
 			printf ("%d\n", current_freq);
 			
-			// above 3633mhz set to performance
-			if (current_freq > max_freq / 1.22) {
+			cpufreq_set_frequency(cpu_count, min_freq);
+			cpufreq_modify_policy_governor(cpu_count, gov_save);
+
+			// above max_freq divided by number to get freq, set to performance
+			if (current_freq > max_freq / 1.25) {
+				cpufreq_set_frequency(cpu_count, max_freq);
 				cpufreq_modify_policy_governor(cpu_count, gov_perf);
 			}
-
-			// below 3633mhz set to powersave
-			if (current_freq < max_freq / 1.22) {
-				cpufreq_modify_policy_governor(cpu_count, gov_save);
-			}
-
+			
 		}
 
 		nanosleep(&ticks, NULL);
