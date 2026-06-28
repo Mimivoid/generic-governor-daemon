@@ -19,7 +19,7 @@ int main() {
 
 	printf("%d\n", ncpus);
 
-	const long tick_ms = 280; // ~1/2 Hz @ 512
+	const long tick_ms = 180; // ~1/2 Hz @ 512 | 480
     struct timespec ticks = {0, tick_ms * 1000000};
 
 	cpufreq_get_hardware_limits(0, &min_freq, &max_freq);
@@ -32,12 +32,12 @@ int main() {
 		cpufreq_modify_policy_max(cpu_count, max_freq);
 	}
 
-	while (true) {
+	for (;;) {
 
 		for (int cpu_count = 0; cpu_count < ncpus; cpu_count++) {
 			
 			int current_freq = cpufreq_get_freq_kernel(cpu_count);
-			
+
 			cpufreq_set_frequency(cpu_count, min_freq);
 			cpufreq_modify_policy_governor(cpu_count, gov_save);
 
@@ -46,7 +46,7 @@ int main() {
 				cpufreq_set_frequency(cpu_count, max_freq);
 				cpufreq_modify_policy_governor(cpu_count, gov_perf);
 			}
-			
+
 		}
 
 		nanosleep(&ticks, NULL);
@@ -54,3 +54,4 @@ int main() {
 	}
 
 }
+
