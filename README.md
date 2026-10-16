@@ -11,6 +11,6 @@
 - cpupower
 - hwloc
 #### Compiling
-``g++ main.cxx -Ofast -lhwloc -lcpupower -Wl,--gc-sections -Wl,--strip-debug -Wl,-Ofast``
+``g++ test.cxx -Ofast -lhwloc -lcpupower -Wl,--gc-sections -Wl,--strip-debug -Wl,-Ofast``
 #### Running
 ``sudo ./a.out``
